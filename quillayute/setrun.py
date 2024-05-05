@@ -121,13 +121,14 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 6
-        clawdata.tfinal = 3*3600.0
+        clawdata.num_output_times = 4
+        clawdata.tfinal = 4*3600.0
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
         # Specify a list of output times.
-        clawdata.output_times = [30., 60., 300., 600.]
+        clawdata.output_times = list(np.arange(0,61,15)*60.) \
+                                + list(np.arange(65,121,5)*60.)
 
     elif clawdata.output_style == 3:
         # Output every iout timesteps with a total of ntot time steps:
@@ -352,9 +353,12 @@ def setrun(claw_pkg='geoclaw'):
     # Gauges:
     # ---------------
     rundata.gaugedata.gauges = []
+    rundata.gaugedata.min_time_increment = 5 # seconds between outputs
+    #rundata.gaugedata.file_format = 'binary32' # makes smaller files
     # for gauges append lines of the form  [gaugeno, x, y, t1, t2]
     rundata.gaugedata.gauges.append([101, -124.63, 47.9202, 0., 1.e10])
     rundata.gaugedata.gauges.append([102, -124.615, 47.9204, 0., 1.e10])
+
 
     # --------------------
     # GeoClaw parameters:
@@ -374,7 +378,7 @@ def setrun(claw_pkg='geoclaw'):
     geo_data.coriolis_forcing = False
 
     # == Algorithm and Initial Conditions ==
-    geo_data.sea_level = 0.0
+    geo_data.sea_level = 2.157  # MHHW relative to NAVD88
     geo_data.dry_tolerance = 1.e-3
     geo_data.friction_forcing = True
     geo_data.manning_coefficient =.025
@@ -389,7 +393,7 @@ def setrun(claw_pkg='geoclaw'):
     topo_data = rundata.topo_data
     # for topography, append lines of the form
     #    [topotype, fname]
-    topo_path = os.path.abspath('Quillayute_13s.asc')
+    topo_path = os.path.abspath('Quillayute_navd88_13s.asc')
     topo_data.topofiles.append([3, topo_path])
 
     # == setdtopo.data values ==

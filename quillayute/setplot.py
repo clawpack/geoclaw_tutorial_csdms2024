@@ -49,8 +49,22 @@ def setplot(plotdata):
         from clawpack.visclaw import gaugetools
         gaugetools.plot_gauge_locations(current_data.plotdata, \
              gaugenos='all', format_string='ko', add_labels=True)
-    
+             
+    dark_blue = [0.2,0.2,0.7];
+    light_blue = [0.5,0.5,1.0];
+    blue = [0.0,0.0,1.0];
+    blue_green = [0.0,1.0,1.0]
 
+    cmap_flooding = colormaps.make_colormap({0: blue_green,
+                                             0.5: light_blue,
+                                             1: blue})
+
+    yellow = [1.0,0.8,0.2]
+    red = [1.0,0.0,0.0]
+    cmap_speed = colormaps.make_colormap({0: blue_green,
+                                          0.5: yellow,
+                                          1: red})
+                                          
     #-----------------------------------------
     # Figure for depth
     #-----------------------------------------
@@ -71,7 +85,8 @@ def setplot(plotdata):
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
     plotitem.plot_var = geoplot.depth
-    plotitem.pcolor_cmap = geoplot.tsunami_colormap
+    #plotitem.pcolor_cmap = geoplot.tsunami_colormap
+    plotitem.pcolor_cmap = cmap_flooding
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 3.
     plotitem.add_colorbar = True
@@ -105,13 +120,13 @@ def setplot(plotdata):
     plotaxes.ylimits = [47.905, 47.925]
     plotaxes.useOffset = False
     plotaxes.xticks_kwargs = {'rotation':20}
-    plotaxes.afteraxes = add_rs_box
+    plotaxes.afteraxes = addgauges
 
 
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
     plotitem.plot_var = geoplot.depth
-    plotitem.pcolor_cmap = geoplot.tsunami_colormap
+    plotitem.pcolor_cmap = cmap_flooding
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 3.
     plotitem.add_colorbar = True
@@ -150,7 +165,7 @@ def setplot(plotdata):
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
     plotitem.plot_var = geoplot.speed
-    plotitem.pcolor_cmap = geoplot.tsunami_colormap
+    plotitem.pcolor_cmap = cmap_speed
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 2.
     plotitem.add_colorbar = True
@@ -185,13 +200,13 @@ def setplot(plotdata):
     plotaxes.ylimits = [47.905, 47.925]
     plotaxes.useOffset = False
     plotaxes.xticks_kwargs = {'rotation':20}
-    plotaxes.afteraxes = add_rs_box
+    plotaxes.afteraxes = addgauges
 
 
     # Water
     plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
     plotitem.plot_var = geoplot.speed
-    plotitem.pcolor_cmap = geoplot.tsunami_colormap
+    plotitem.pcolor_cmap = cmap_speed
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 2.
     plotitem.add_colorbar = True
