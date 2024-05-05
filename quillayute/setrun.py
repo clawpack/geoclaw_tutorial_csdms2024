@@ -69,13 +69,13 @@ def setrun(claw_pkg='geoclaw'):
 
     # Lower and upper edge of computational domain:
     clawdata.lower[0] = -124.66      # west longitude
-    clawdata.upper[0] = -124.53       # east longitude
+    clawdata.upper[0] = -124.57       # east longitude
 
     clawdata.lower[1] = 47.90       # south latitude
     clawdata.upper[1] = 47.93         # north latitude
 
     # Number of grid cells: Coarsest grid
-    clawdata.num_cells[0] = 130
+    clawdata.num_cells[0] = 90
     clawdata.num_cells[1] = 30
 
     # ---------------
@@ -121,9 +121,9 @@ def setrun(claw_pkg='geoclaw'):
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
-        clawdata.num_output_times = 16
-        clawdata.tfinal = 4*3600.0
-        clawdata.output_t0 = False  # output at initial (or restart) time?
+        clawdata.num_output_times = 6
+        clawdata.tfinal = 3*3600.0
+        clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
         # Specify a list of output times.
@@ -171,7 +171,7 @@ def setrun(claw_pkg='geoclaw'):
 
     # Desired Courant number if variable dt used, and max to allow without
     # retaking step with a smaller dt:
-    clawdata.cfl_desired = 0.75
+    clawdata.cfl_desired = 0.7
     clawdata.cfl_max = 1.0
 
     # Maximum number of time steps to allow between output times:
@@ -244,7 +244,7 @@ def setrun(claw_pkg='geoclaw'):
     # Specify when checkpoint files should be created that can be
     # used to restart a computation.
 
-    clawdata.checkpt_style = 0
+    clawdata.checkpt_style = 2
 
     if clawdata.checkpt_style == 0:
         # Do not checkpoint at all
@@ -256,7 +256,7 @@ def setrun(claw_pkg='geoclaw'):
 
     elif np.abs(clawdata.checkpt_style) == 2:
         # Specify a list of checkpoint times.  
-        clawdata.checkpt_times = [0.1,0.15]
+        clawdata.checkpt_times = [3600.]
 
     elif np.abs(clawdata.checkpt_style) == 3:
         # Checkpoint every checkpt_interval timesteps (on Level 1)
@@ -333,10 +333,10 @@ def setrun(claw_pkg='geoclaw'):
     flagregions.append(flagregion)
 
     # River source region:
-    x1rs = -124.5455
-    x2rs = -124.5440
-    y1rs = 47.9065
-    y2rs = 47.9070
+    x1rs = -124.577
+    x2rs = -124.5750
+    y1rs = 47.9097
+    y2rs = 47.9106
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_source'
     flagregion.minlevel = 3
@@ -487,4 +487,3 @@ if __name__ == '__main__':
     import sys
     rundata = setrun(*sys.argv[1:])
     rundata.write()
-

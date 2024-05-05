@@ -12,11 +12,11 @@ import matplotlib.pyplot as plt
 
 from clawpack.geoclaw import topotools
 
-# river source rectangle:
-x1rs = -124.5455
-x2rs = -124.5440
-y1rs = 47.9065
-y2rs = 47.9070
+# River source region:
+x1rs = -124.577
+x2rs = -124.5750
+y1rs = 47.9097
+y2rs = 47.9106
 
 def add_rs_box(current_data):
     from clawpack.visclaw.plottools import plotbox
@@ -61,7 +61,7 @@ def setplot(plotdata):
     plotaxes = plotfigure.new_plotaxes('pcolor')
     plotaxes.title = 'Depth at time h:m:s'
     plotaxes.scaled = True
-    plotaxes.xlimits = [-124.66, -124.53]
+    plotaxes.xlimits = [-124.66, -124.57]
     plotaxes.ylimits = [47.90, 47.93]
     plotaxes.useOffset = False
     plotaxes.xticks_kwargs = {'rotation':20}
@@ -140,7 +140,7 @@ def setplot(plotdata):
     plotaxes = plotfigure.new_plotaxes('pcolor')
     plotaxes.title = 'Speed at time h:m:s'
     plotaxes.scaled = True
-    plotaxes.xlimits = [-124.66, -124.53]
+    plotaxes.xlimits = [-124.66, -124.57]
     plotaxes.ylimits = [47.90, 47.93]
     plotaxes.xticks_kwargs = {'rotation':20}
     plotaxes.useOffset = False
@@ -216,23 +216,26 @@ def setplot(plotdata):
     #-----------------------------------------
     plotfigure = plotdata.new_plotfigure(name='Surface at gauges', figno=300, \
                     type='each_gauge')
+    plotfigure.figsize = (10,4)
     plotfigure.clf_each_gauge = True
 
     # Set up for axes in this figure:
     plotaxes = plotfigure.new_plotaxes()
     plotaxes.xlimits = 'auto'
     plotaxes.ylimits = 'auto'
-    plotaxes.title = 'Depth'
+    plotaxes.title = 'Surface'
     plotaxes.grid = True
+    plotaxes.time_scale = 1/60.  # plot in minutes
+    plotaxes.time_label = 'minutes'
 
     # Plot surface as blue curve:
     plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
-    plotitem.plot_var = 0
+    plotitem.plot_var = 3
     plotitem.plotstyle = 'b-'
 
     # Plot topo as green curve:
     plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
-    plotitem.show = True
+    plotitem.show = False
 
     def gaugetopo(current_data):
         q = current_data.q

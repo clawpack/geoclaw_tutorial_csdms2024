@@ -49,13 +49,13 @@ subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt)
 
     if (.true.) then
         ! river source:
-        x1rs = -124.5455d0
-        x2rs = -124.5440d0
-        y1rs = 47.9065d0
-        y2rs = 47.9070d0
+        x1rs = -124.577d0
+        x2rs = -124.5750d0
+        y1rs = 47.9097d0
+        y2rs = 47.9106d0
     
         area = (x2rs-x1rs)*(y2rs-y1rs) * (111e3)**2 * cos(29*3.14/180.)
-        discharge = 60000d0 *(0.3048)**3  ! m**3 / second
+        discharge = 6000d0 *(0.3048)**3  ! m**3 / second
         rs = discharge/area  ! m/sec needed in source area
     
         do i=1,mx
