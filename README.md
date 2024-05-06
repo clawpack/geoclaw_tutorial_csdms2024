@@ -24,7 +24,7 @@ to the end of the file `$HOME/.bashrc`):
     export CLAW=$HOME/clawpack
     echo CLAW=$CLAW
 
-Clawpack must be installed via these commands:
+Clawpack can be installed via these commands:
 
     cd $HOME
     git clone https://github.com/clawpack/clawpack.git
@@ -33,6 +33,11 @@ Clawpack must be installed via these commands:
     git submodule init
     git submodule update
     pip install --no-build-isolation -e ./
+
+These same commands should also work on a laptop.  There are other
+installation options, but if you use pip make sure to use the
+command above so that it does not discard the Fortran files after
+installing.  See https://www.clawpack.org/installing_fortcodes.html.
     
 You should now be ready to run Clawpack examples, e.g.
 
@@ -57,6 +62,6 @@ In a JupyterHub terminal (or on your laptop if you have Clawpack installed):
     cd $HOME
     git clone https://github.com/rjleveque/csdms_clinic_2024.git
     
-This will clone this repository.
+which will clone this repository.
 
 Then see the README.md file in the `csdms_clinic_2024/quillayute` directory.
