@@ -64,7 +64,18 @@ def setplot(plotdata):
     cmap_speed = colormaps.make_colormap({0: blue_green,
                                           0.5: yellow,
                                           1: red})
-                                          
+
+    def make_plotitem_hillshade(plotaxes):
+        # create a plotitem on this axis that shows land using hillshade
+        plotitem = plotaxes.new_plotitem(plot_type='2d_hillshade')
+        plotitem.plot_var = geoplot.land
+        plotitem.hillshade_cmap = 'gray'
+        plotitem.hillshade_vertical_exaggeration = 4
+        plotitem.hillshade_azimuth_degree =  315
+        plotitem.hillshade_altitude_degree = 45
+        plotitem.hillshade_latlon = True
+        return plotitem
+                                                  
     #-----------------------------------------
     # Figure for depth
     #-----------------------------------------
@@ -90,21 +101,13 @@ def setplot(plotdata):
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 3.
     plotitem.add_colorbar = True
-    plotitem.colorbar_shrink = 0.5
+    plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_extend = 'max'
     plotitem.amr_celledges_show = [0,0,0]
     plotitem.patchedges_show = 1
 
-    # Land
-    plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
-    plotitem.plot_var = geoplot.land
-    plotitem.pcolor_cmap = geoplot.land_colors
-    plotitem.pcolor_cmin = 0.0
-    plotitem.pcolor_cmax = 100.0
-    plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
-
+    # Land: use hillshade:
+    plotitem = make_plotitem_hillshade(plotaxes)
 
     #-----------------------------------------
     # Figure for depth - zoom view
@@ -130,20 +133,14 @@ def setplot(plotdata):
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 3.
     plotitem.add_colorbar = True
-    plotitem.colorbar_shrink = 0.5
+    plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_extend = 'max'
     plotitem.amr_celledges_show = [0,0,0]
     plotitem.patchedges_show = 0
 
-    # Land
-    plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
-    plotitem.plot_var = geoplot.land
-    plotitem.pcolor_cmap = geoplot.land_colors
-    plotitem.pcolor_cmin = 0.0
-    plotitem.pcolor_cmax = 100.0
-    plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 0
+    # Land: use hillshade:
+    plotitem = make_plotitem_hillshade(plotaxes)
+
 
     #-----------------------------------------
     # Figure for speed
@@ -169,21 +166,14 @@ def setplot(plotdata):
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 2.
     plotitem.add_colorbar = True
-    plotitem.colorbar_shrink = 0.5
+    plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'm/s'
     plotitem.colorbar_extend = 'max'
     plotitem.amr_celledges_show = [0,0,0]
     plotitem.patchedges_show = 1
 
-    # Land
-    plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
-    plotitem.plot_var = geoplot.land
-    plotitem.pcolor_cmap = geoplot.land_colors
-    plotitem.pcolor_cmin = 0.0
-    plotitem.pcolor_cmax = 100.0
-    plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 1
+    # Land: use hillshade:
+    plotitem = make_plotitem_hillshade(plotaxes)
 
 
     #-----------------------------------------
@@ -210,21 +200,14 @@ def setplot(plotdata):
     plotitem.pcolor_cmin = 0.
     plotitem.pcolor_cmax = 2.
     plotitem.add_colorbar = True
-    plotitem.colorbar_shrink = 0.5
+    plotitem.colorbar_shrink = 0.7
     plotitem.colorbar_label = 'm/s'
     plotitem.colorbar_extend = 'max'
     plotitem.amr_celledges_show = [0,0,0]
     plotitem.patchedges_show = 0
 
-    # Land
-    plotitem = plotaxes.new_plotitem(plot_type='2d_pcolor')
-    plotitem.plot_var = geoplot.land
-    plotitem.pcolor_cmap = geoplot.land_colors
-    plotitem.pcolor_cmin = 0.0
-    plotitem.pcolor_cmax = 100.0
-    plotitem.add_colorbar = False
-    plotitem.amr_celledges_show = [0,0,0]
-    plotitem.patchedges_show = 0
+    # Land: use hillshade:
+    plotitem = make_plotitem_hillshade(plotaxes)
 
     #-----------------------------------------
     # Figures for gauges
@@ -248,9 +231,28 @@ def setplot(plotdata):
     plotitem.plot_var = 3
     plotitem.plotstyle = 'b-'
 
+    plotfigure = plotdata.new_plotfigure(name='Depth at gauges', figno=301, \
+                    type='each_gauge')
+    plotfigure.figsize = (10,4)
+    plotfigure.clf_each_gauge = True
+
+    # Set up for axes in this figure:
+    plotaxes = plotfigure.new_plotaxes()
+    plotaxes.xlimits = 'auto'
+    plotaxes.ylimits = 'auto'
+    plotaxes.title = 'Surface'
+    plotaxes.grid = True
+    plotaxes.time_scale = 1/60.  # plot in minutes
+    plotaxes.time_label = 'minutes'
+
+    # Plot depth as blue curve:
+    plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
+    plotitem.plot_var = 0
+    plotitem.plotstyle = 'b-'
+    
     # Plot topo as green curve:
     plotitem = plotaxes.new_plotitem(plot_type='1d_plot')
-    plotitem.show = False
+    #plotitem.show = False
 
     def gaugetopo(current_data):
         q = current_data.q

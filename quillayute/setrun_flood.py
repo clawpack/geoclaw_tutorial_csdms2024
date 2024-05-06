@@ -106,8 +106,8 @@ def setrun(claw_pkg='geoclaw'):
     # restart_file 'fort.chkNNNNN' specified below should be in 
     # the OUTDIR indicated in Makefile.
 
-    clawdata.restart = False               # True to restart from prior results
-    clawdata.restart_file = 'fort.chk00036'  # File to use for restart data
+    clawdata.restart = False              # True to restart from prior results
+    clawdata.restart_file = 'fort.chk01063'  # File to use for restart data
 
     # -------------
     # Output times:
@@ -117,7 +117,7 @@ def setrun(claw_pkg='geoclaw'):
     # Note that the time integration stops after the final output time.
     # The solution at initial time t0 is always written in addition.
 
-    clawdata.output_style = 1
+    clawdata.output_style = 2
 
     if clawdata.output_style==1:
         # Output nout frames at equally spaced times up to tfinal:
@@ -126,9 +126,9 @@ def setrun(claw_pkg='geoclaw'):
         clawdata.output_t0 = True  # output at initial (or restart) time?
 
     elif clawdata.output_style == 2:
-        # Specify a list of output times.
+        # Specify a list of output times
         clawdata.output_times = list(np.arange(0,61,15)*60.) \
-                                + list(np.arange(65,121,5)*60.)
+                                + list(np.arange(65,91,5)*60.)
 
     elif clawdata.output_style == 3:
         # Output every iout timesteps with a total of ntot time steps:
@@ -323,7 +323,7 @@ def setrun(claw_pkg='geoclaw'):
     flagregion = FlagRegion(num_dim=2)
     flagregion.name = 'Region_domain'
     flagregion.minlevel = 1
-    flagregion.maxlevel = 3
+    flagregion.maxlevel = 2
     flagregion.t1 = 0.
     flagregion.t2 = 1e9
     flagregion.spatial_region_type = 1  # Rectangle
@@ -348,6 +348,33 @@ def setrun(claw_pkg='geoclaw'):
     flagregion.spatial_region = [x1rs,x2rs,y1rs,y2rs]
     flagregions.append(flagregion)
 
+    # Downstream region:  allow 3 levels for all time
+    flagregion = FlagRegion(num_dim=2)
+    flagregion.name = 'Region_downstream'
+    flagregion.minlevel = 1
+    flagregion.maxlevel = 3
+    flagregion.t1 = 0.
+    flagregion.t2 = 1e9
+    flagregion.spatial_region_type = 1  # Rectangle
+    flagregion.spatial_region = [clawdata.lower[0]-0.1,
+                                 -124.595,
+                                 clawdata.lower[1]-0.1,
+                                 clawdata.upper[1]+0.1]
+    flagregions.append(flagregion)
+
+    # upstream region: allow 3 levels only before rainfall
+    flagregion = FlagRegion(num_dim=2)
+    flagregion.name = 'Region_upstream'
+    flagregion.minlevel = 1
+    flagregion.maxlevel = 3
+    flagregion.t1 = 0.
+    flagregion.t2 = 3600.
+    flagregion.spatial_region_type = 1  # Rectangle
+    flagregion.spatial_region = [-124.595,
+                                 clawdata.upper[0]+0.1,
+                                 clawdata.lower[1]-0.1,
+                                 clawdata.upper[1]+0.1]
+    flagregions.append(flagregion)
 
     # ---------------
     # Gauges:

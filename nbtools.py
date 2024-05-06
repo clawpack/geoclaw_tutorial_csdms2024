@@ -7,7 +7,7 @@ if you are unable to open the html file `_plots/_PlotIndex.html`.
 
 import os
 from IPython.core.display import display
-from IPython.display import HTML
+from IPython.display import HTML, IFrame
 
 try:
     from IPython.display import FileLink
@@ -185,23 +185,27 @@ def embed_html(elem, width_percent=50, height_pixels=None):
 # Convenience functions to display frames, gauges, or animations that
 # routinely appear in _plots:
 
-def show_frame(frameno, figno=0, width_percent=50, height_pixels=None):
-    elem = '_plots/frame%sfig%s.png' % (str(frameno).zfill(4), figno)
+def show_frame(frameno, figno=0, plotdir='_plots',
+               width_percent=50, height_pixels=None):
+    elem = '%s/frame%sfig%s.png' % (plotdir, str(frameno).zfill(4), figno)
     if not os.path.isfile(elem):
         raise ValueError('%s not found' % elem)
     embed_frame  = embed_html(elem, width_percent, height_pixels)
     return display(HTML(embed_frame))
 
-def show_gauge(gaugeno, figno=300, width_percent=50, height_pixels=None):
-    elem = '_plots/gauge%sfig%s.png' % (str(gaugeno).zfill(4), figno)
+def show_gauge(gaugeno, figno=300, plotdir='_plots',
+               width_percent=50, height_pixels=None):
+    elem = '%s/gauge%sfig%s.png' % (plotdir, str(gaugeno).zfill(4), figno)
     if not os.path.isfile(elem):
         raise ValueError('%s not found' % elem)
     embed_gauge  = embed_html(elem, width_percent, height_pixels)
     return display(HTML(embed_gauge))
 
-def show_movie(figno=0, width_percent=70, height_pixels=800):
-    elem = '_plots/movie_fig%s.html' % figno
+def show_movie(figno=0, plotdir='_plots',
+               width_percent=70, height_pixels=800):
+    elem = '%s/movie_fig%s.html' % (plotdir, figno)
     if not os.path.isfile(elem):
         raise ValueError('%s not found' % elem)
     embed_movie  = embed_html(elem, width_percent, height_pixels)
+    print(embed_movie)
     return display(HTML(embed_movie))

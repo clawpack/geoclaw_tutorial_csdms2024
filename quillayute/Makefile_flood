@@ -12,11 +12,11 @@ CLAWMAKE = $(CLAW)/clawutil/src/Makefile.common
 # ----------------------------------
 
 CLAW_PKG = geoclaw                  # Clawpack package to use
-EXE = xgeoclaw                 # Executable to create
-SETRUN_FILE = setrun.py        # File containing function to make data
-OUTDIR = _output               # Directory for output
+EXE = xgeoclaw_flood                 # Executable to create
+SETRUN_FILE = setrun_flood.py        # File containing function to make data
+OUTDIR = _output_flood               # Directory for output
 SETPLOT_FILE = setplot.py      # File containing function to set plots
-PLOTDIR = _plots               # Directory for plots
+PLOTDIR = _plots_flood               # Directory for plots
 
 # Environment variable FC should be set to fortran compiler, e.g. gfortran
 
@@ -39,6 +39,7 @@ include $(GEOLIB)/Makefile.geoclaw
 EXCLUDE_MODULES = \
 
 EXCLUDE_SOURCES = \
+  ./src2.f90 \
 
 # ----------------------------------------
 # List of custom sources for this program:
@@ -48,7 +49,7 @@ EXCLUDE_SOURCES = \
 MODULES = \
 
 SOURCES = \
-  ./src2.f90 \
+  ./src2_flood.f90 \
   $(CLAW)/riemann/src/rpn2_geoclaw.f \
   $(CLAW)/riemann/src/rpt2_geoclaw.f \
   $(CLAW)/riemann/src/geoclaw_riemann_utils.f \

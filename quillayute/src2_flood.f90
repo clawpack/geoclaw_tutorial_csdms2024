@@ -37,6 +37,9 @@ subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt)
     ! river
     real(kind=8) :: x,x1rs,x2rs,y1rs,y2rs,area,discharge,discharge_cfs,rs
 
+    ! rain
+    real(kind=8) :: xrain,t1rain,t2rain,rain_rate
+
     ! Algorithm parameters
 
     ! Parameter controls when to zero out the momentum at a depth in the
@@ -71,7 +74,29 @@ subroutine src2(meqn,mbc,mx,my,xlower,ylower,dx,dy,q,maux,aux,t,dt)
             enddo
         enddo
     endif
-    
+
+    ! rain
+
+    if (.true.) then
+        ! add uniform rainfall east of xrain for times t1rain to t2rain:
+        xrain = -124.59
+        rain_rate = 2.d0/3600.d0  ! 2 m/hr
+        t1rain = 3600.
+        t2rain = t1rain + 900.d0  ! 15 minutes
+        if ((t>=t1rain) .and. (t<=t2rain)) then
+            do i=1,mx
+                x = xlower + (i-0.5d0)*dx
+                do j=1,my
+                    if (x >= xrain) then
+                        q(1,i,j) = q(1,i,j) + dt*rain_rate
+                      endif
+                enddo
+            enddo
+        endif
+    endif
+
+
+        
     ! ----------------------------------------------------------------
     ! Spherical geometry source term(s)
     !
