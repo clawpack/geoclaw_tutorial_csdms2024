@@ -35,7 +35,7 @@ in a web browser to view the plots.
 
 On the JupyterHub, you can view selected plots by opening the notebook
 ViewPlotsQuillayute.ipynb.  A rendered version of what that should look
-like can be viewed in the archived version [ViewPlotsQuillayute.html](add_URL).
+like can be viewed in the archived version [ViewPlotsQuillayute.html](https://faculty.washington.edu/rjl/misc/quillayute/ViewPlotsQuillayute_2024-05-09.html).
 
 ## Notes on the setup:
 
