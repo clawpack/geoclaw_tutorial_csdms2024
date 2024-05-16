@@ -86,8 +86,7 @@ Then see the README.md file in the `geoclaw_tutorial_csdms2024/quillayute` direc
 
 - Gallery: http://www.clawpack.org/gallery
 
-- Poster on Visualizing Ship Motion in Tsunami Currents:
-  https://depts.washington.edu/ptha/CSDMS2024/
+- [Poster on Visualizing Ship Motion in Tsunami Currents](https://depts.washington.edu/ptha/CSDMS2024/)
 
 - D-Claw examples: https://dlgeorge.github.io/projects/
 
