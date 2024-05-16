@@ -71,6 +71,13 @@ which will clone this repository.
 
 Then see the README.md file in the `geoclaw_tutorial_csdms2024/quillayute` directory.
 
+### Rendered versions of the Jupyter notebooks:
+
+- [ViewPlotsQuillayute.html](https://depts.washington.edu/clawpack/geoclaw/geoclaw_tutorial_csdms2024/quillayute/ViewPlotsQuillayute.html).
+
+- [plot_fgmax.html](https://depts.washington.edu/clawpack/geoclaw/geoclaw_tutorial_csdms2024/quillayute/plot_fgmax.html).
+
+
 ## Some other sources of information discussed in the clinic:
 
 - Some GeoClaw references: http://www.geoclaw.org
