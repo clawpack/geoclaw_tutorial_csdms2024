@@ -446,27 +446,27 @@ def setrun(claw_pkg='geoclaw'):
 
     # Now append to this list objects of class fgmax_tools.FGmaxGrid
     # specifying any fgmax grids.
+    # Points on a uniform 2d grid:
 
-    if 0:
-        # Points on a uniform 2d grid:
-        dx_fine = 2./(3.*4.)  # grid resolution at finest level
+    dx_fine = 1./(3*3600.)  # grid resolution at finest level
 
-        fg = fgmax_tools.FGmaxGrid()
-        fg.point_style = 2  # uniform rectangular x-y grid
-        fg.x1 = -120. + dx_fine/2.  # specify pts to align with FV cell centers
-        fg.x2 = -60. - dx_fine/2.
-        fg.y1 = -60. + dx_fine/2.
-        fg.y2 = 0. - dx_fine/2.
-        fg.dx = dx_fine
-        fg.tstart_max =  10.      # when to start monitoring max values
-        fg.tend_max = 1.e10       # when to stop monitoring max values
-        fg.dt_check = 60.         # target time (sec) increment between updating 
-                                  # max values
-        fg.min_level_check = 3    # which levels to monitor max on
-        fg.arrival_tol = 1.e-2    # tolerance for flagging arrival
+    fg = fgmax_tools.FGmaxGrid()
+    fg.point_style = 2  # uniform rectangular x-y grid
+    fg.x1 = -124.625 + dx_fine/2.  # specify pts to align with FV cell centers
+    fg.x2 = -124.605 - dx_fine/2.
+    fg.y1 = 47.91 + dx_fine/2.
+    fg.y2 = 47.925 - dx_fine/2.
+    fg.dx = dx_fine
+    fg.tstart_max =  3600.    # when to start monitoring max values
+    fg.tend_max = 1.e10       # when to stop monitoring max values
+    fg.dt_check = 5.         # target time (sec) increment between updating
+                              # max values
+    fg.min_level_check = 3    # which levels to monitor max on
+    fg.arrival_tol = 1.e-2    # tolerance for flagging arrival
 
-        fg.interp_method = 0      # 0 ==> pw const in cells, recommended
-        fgmax_grids.append(fg)    # written to fgmax_grids.data
+    fg.interp_method = 0      # 0 ==> pw const in cells, recommended
+    fgmax_grids.append(fg)    # written to fgmax_grids.data
+
 
 
     # == fgout_grids.data values ==
@@ -475,20 +475,20 @@ def setrun(claw_pkg='geoclaw'):
     # objects of class clawpack.geoclaw.fgout_tools.FGoutGrid:
     fgout_grids = rundata.fgout_data.fgout_grids  # empty list initially
 
-    if 0:
+    if 1:
         fgout = fgout_tools.FGoutGrid()
         fgout.fgno = 1
         fgout.point_style = 2       # will specify a 2d grid of points
         fgout.output_format = 'binary32'  # 4-byte, float32
-        fgout.nx = 200
-        fgout.ny = 250
-        fgout.x1 = -115.  # specify edges (fgout pts will be cell centers)
-        fgout.x2 = -70.
-        fgout.y1 = -55.
-        fgout.y2 = -10.
-        fgout.tstart = 0.
-        fgout.tend = 6.*3600
-        fgout.nout = 25
+        fgout.x1 = -124.625  # specify edges (fgout pts will be cell centers)
+        fgout.x2 = -124.605
+        fgout.y1 = 47.91
+        fgout.y2 = 47.925
+        fgout.nx = 216
+        fgout.ny = 162
+        fgout.tstart = 3600.
+        fgout.tend = 2.*3600
+        fgout.nout = 121
         fgout_grids.append(fgout)    # written to fgout_grids.data
 
 
@@ -518,3 +518,7 @@ if __name__ == '__main__':
     import sys
     rundata = setrun(*sys.argv[1:])
     rundata.write()
+
+    from clawpack.geoclaw import kmltools
+    kmltools.make_input_data_kmls(rundata)
+
