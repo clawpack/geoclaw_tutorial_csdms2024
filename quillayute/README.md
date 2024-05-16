@@ -16,6 +16,11 @@ If running on the CSDMS JupyterHub, first see the instructions in ../README.md
 to open a terminal window and make sure that Clawpack and other needed tools
 are available.
 
+In the terminal, move to this directory before executing
+commands below:
+
+    cd $HOME/geoclaw_tutorial_csdms2024/quillayute
+
 You will need to obtain a small topography DEM needed for this example:
 
     make topo
@@ -23,6 +28,21 @@ You will need to obtain a small topography DEM needed for this example:
 (or equivalently, `python fetch_topo.py`, which fetches the topo file from
 a GeoClaw archive).
 
+**Quick option on the CSDMS JupyterHub:**
+
+These examples were designed to run quickly, but
+the JupyterHub does not have OpenMP enabled and runs on
+older hardware, so even the first example takes about 15 minutes to run
+(vs. 1 minute on a newer MacBook).
+
+Rather than running the code and
+making the plots as described below, you can fetch
+archived versions from a terminal window via:
+
+    cp -r /data/quillayute/_* ./
+
+**To run the code and make plots:**
+    
 Execute these commands:
 
     make # compile Geoclaw code
