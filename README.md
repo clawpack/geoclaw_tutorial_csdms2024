@@ -2,6 +2,8 @@
 
 ### Materials for the GeoClaw Clinic, CSDMS 2024 Annual Meeting
 
+https://github.com/clawpack/geoclaw_tutorial_csdms2024
+
 #### Instructions for running examples on the JupyterHub:
 
 To use the [CSDMS JupyterHub](https://csdms.colorado.edu/wiki/JupyterHub),
@@ -55,6 +57,9 @@ We will see how to use a Jupyter notebook for this purpose.
 (Copy the file `csdms_clinic_2024/ViewPlots.ipynb` to the example
 directory and modify it to view specific plots).
 
+The plots for the chile2010 example can be viewed in the Clawpack gallery at
+[this link](https://www.clawpack.org/gallery/_static/geoclaw/examples/tsunami/chile2010/_plots/_PlotIndex.html)
+
 #### Instructions for obtaining the tutorial example:
 
 In a JupyterHub terminal (or on your laptop if you have Clawpack installed):
@@ -65,3 +70,16 @@ In a JupyterHub terminal (or on your laptop if you have Clawpack installed):
 which will clone this repository.
 
 Then see the README.md file in the `geoclaw_tutorial_csdms2024/quillayute` directory.
+
+## Some other sources of information discussed in the clinic:
+
+- Some GeoClaw references: http://www.geoclaw.org
+
+- Clawpack documentation: http://www.clawpack.org
+
+- Gallery: http://www.clawpack.org/gallery
+
+- Poster on Visualizing Ship Motion in Tsunami Currents:
+  https://depts.washington.edu/ptha/CSDMS2024/
+
+  
