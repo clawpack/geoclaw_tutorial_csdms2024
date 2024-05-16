@@ -88,6 +88,13 @@ Then see the README.md file in the `geoclaw_tutorial_csdms2024/quillayute` direc
 
 - [Poster on Visualizing Ship Motion in Tsunami Currents](https://depts.washington.edu/ptha/CSDMS2024/)
 
+- Storm surge examples and documentation:
+  - [katrina.ipynb](https://github.com/clawpack/apps/blob/master/notebooks/geoclaw/katrina/katrina.ipynb)
+  - https://github.com/mandli/surge-examples/
+  - https://www.clawpack.org/storm_module.html
+  - https://www.clawpack.org/surgedata.html
+
+
 - D-Claw examples: https://dlgeorge.github.io/projects/
 
 - D-Claw on Github: https://github.com/geoflows/dclaw
