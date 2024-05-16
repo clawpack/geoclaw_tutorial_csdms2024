@@ -37,9 +37,13 @@ Clawpack can be installed via these commands:
     pip install --no-build-isolation -e ./
 
 These same commands should also work on a laptop.  There are other
-installation options, but if you use pip make sure to use the
+[installation options](https://www.clawpack.org/installing_fortcodes.html)
+(e.g. downloading a tar file if you don't want
+the git version), but if you use pip to set the Python path,
+make sure to use the
 command above so that it does not discard the Fortran files after
-installing.  See https://www.clawpack.org/installing_fortcodes.html.
+installing.  See https://www.clawpack.org/installing_fortcodes.html for
+more details.
     
 You should now be ready to run Clawpack examples, e.g.
 
