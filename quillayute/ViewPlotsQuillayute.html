@@ -7524,6 +7524,7 @@ a.anchor-link {
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h3 id="Plot-topography-DEM">Plot topography DEM<a class="anchor-link" href="#Plot-topography-DEM">¶</a></h3><p>If you are using the CSDMS JupyterHub, select the Clawpack kernel before running this notebook in order to import clawpack modules. (The kernel appears in the top-right corner of the notebook, click on it to get a menu of possible kernels.)  This kernel also includes pylab and matplotlib.</p>
+<p>Note that the topography file <code>Quillayute_13s.asc</code> will not be found unless you run <code>make topo</code> in a terminal window.</p>
 </div>
 </div>
 </div>
@@ -7532,7 +7533,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">clawpack.geoclaw</span> <span class="kn">import</span> <span class="n">topotools</span>
@@ -7568,6 +7569,11 @@ a.anchor-link {
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <h2 id="View-plots-in-notebook">View plots in notebook<a class="anchor-link" href="#View-plots-in-notebook">¶</a></h2><p>After running <code>make .plots</code>, the <code>_plots</code> directory contains plots that can be viewed by opening the html file <code>_plots/_PlotIndex.html</code>.</p>
 <p>This notebook can be used if you are on a JupyterHub where you are not able to open that file to view the plots.</p>
+<p>Also, on the CSDMS JupyterHub you can obtain the plots and output directories using the following command in a terminal window:</p>
+<pre><code>cp -r /data/quillayute/_* ./
+
+</code></pre>
+<p>This is useful since OpenMP is not available on the JupyterHub computer and so the codes run much more slowly than on a laptop.</p>
 </div>
 </div>
 </div>
@@ -7576,7 +7582,7 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="c1">#from clawpack.clawutil import nbtools</span>
@@ -7584,21 +7590,6 @@ a.anchor-link {
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="s1">'..'</span><span class="p">)</span>
 <span class="kn">import</span> <span class="nn">nbtools</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=072cbf37-ce91-4977-9c03-e79facfd11a7">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">rundir</span> <span class="o">=</span> <span class="s1">'.'</span>
-<span class="c1">#rundir = '/data/quillayute'    # to use data archived on CSDMS JupyterHub</span>
 </pre></div>
 </div>
 </div>
@@ -7612,7 +7603,7 @@ a.anchor-link {
 <div class="jp-InputPrompt jp-InputArea-prompt">In [6]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">plotdir</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1">/_plots'</span> <span class="o">%</span> <span class="n">rundir</span> <span class="c1"># to use data archived on CSDMS JupyterHub</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plotdir</span> <span class="o">=</span> <span class="s1">'_plots'</span>
 </pre></div>
 </div>
 </div>
@@ -7650,7 +7641,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0000fig1.png" width="50%%"/>'
+<embed src="_plots/frame0000fig1.png" width="50%%"/>'
 </div>
 </div>
 </div>
@@ -7696,7 +7687,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0001fig0.png" width="50%%"/>'
+<embed src="_plots/frame0001fig0.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7709,7 +7700,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0002fig0.png" width="50%%"/>'
+<embed src="_plots/frame0002fig0.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
@@ -7722,7 +7713,7 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0003fig0.png" width="50%%"/>'
+<embed src="_plots/frame0003fig0.png" width="50%%"/>'
 </div>
 </div>
 </div>
@@ -7760,19 +7751,19 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0002fig1.png" width="50%%"/>'
+<embed src="_plots/frame0002fig1.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0004fig1.png" width="50%%"/>'
+<embed src="_plots/frame0004fig1.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/frame0006fig1.png" width="50%%"/>'
+<embed src="_plots/frame0006fig1.png" width="50%%"/>'
 </div>
 </div>
 </div>
@@ -7810,13 +7801,13 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/gauge0101fig300.png" width="70%%"/>'
+<embed src="_plots/gauge0101fig300.png" width="70%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots/gauge0102fig300.png" width="70%%"/>'
+<embed src="_plots/gauge0102fig300.png" width="70%%"/>'
 </div>
 </div>
 </div>
@@ -7865,14 +7856,14 @@ a.anchor-link {
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;embed src='./_plots/movie_fig0.html' width='100%%' height='600px' /&gt;
+<pre>&lt;embed src='_plots/movie_fig0.html' width='100%%' height='600px' /&gt;
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed height="600px" src="./_plots/movie_fig0.html" width="100%%"/>
+<embed height="600px" src="_plots/movie_fig0.html" width="100%%"/>
 </div>
 </div>
 </div>
@@ -7904,7 +7895,7 @@ Then the plots below should be available in <code>_plots_flood</code>.</p>
 <div class="jp-InputPrompt jp-InputArea-prompt">In [12]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">plotdir</span> <span class="o">=</span> <span class="s1">'</span><span class="si">%s</span><span class="s1">/_plots_flood'</span> <span class="o">%</span> <span class="n">rundir</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">plotdir</span> <span class="o">=</span> <span class="s1">'_plots_flood'</span>
 </pre></div>
 </div>
 </div>
@@ -7932,19 +7923,19 @@ Then the plots below should be available in <code>_plots_flood</code>.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots_flood/frame0004fig0.png" width="50%%"/>'
+<embed src="_plots_flood/frame0004fig0.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots_flood/frame0006fig0.png" width="50%%"/>'
+<embed src="_plots_flood/frame0006fig0.png" width="50%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots_flood/frame0008fig0.png" width="50%%"/>'
+<embed src="_plots_flood/frame0008fig0.png" width="50%%"/>'
 </div>
 </div>
 </div>
@@ -7981,14 +7972,14 @@ Then the plots below should be available in <code>_plots_flood</code>.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;embed src='./_plots_flood/movie_fig1.html' width='100%%' height='600px' /&gt;
+<pre>&lt;embed src='_plots_flood/movie_fig1.html' width='100%%' height='600px' /&gt;
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed height="600px" src="./_plots_flood/movie_fig1.html" width="100%%"/>
+<embed height="600px" src="_plots_flood/movie_fig1.html" width="100%%"/>
 </div>
 </div>
 </div>
@@ -8014,14 +8005,14 @@ Then the plots below should be available in <code>_plots_flood</code>.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>&lt;embed src='./_plots_flood/movie_fig11.html' width='100%%' height='600px' /&gt;
+<pre>&lt;embed src='_plots_flood/movie_fig11.html' width='100%%' height='600px' /&gt;
 </pre>
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed height="600px" src="./_plots_flood/movie_fig11.html" width="100%%"/>
+<embed height="600px" src="_plots_flood/movie_fig11.html" width="100%%"/>
 </div>
 </div>
 </div>
@@ -8059,13 +8050,13 @@ Then the plots below should be available in <code>_plots_flood</code>.</p>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots_flood/gauge0101fig300.png" width="70%%"/>'
+<embed src="_plots_flood/gauge0101fig300.png" width="70%%"/>'
 </div>
 </div>
 <div class="jp-OutputArea-child">
 <div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
 <div class="jp-RenderedHTMLCommon jp-RenderedHTML jp-OutputArea-output" data-mime-type="text/html" tabindex="0">
-<embed src="./_plots_flood/gauge0102fig300.png" width="70%%"/>'
+<embed src="_plots_flood/gauge0102fig300.png" width="70%%"/>'
 </div>
 </div>
 </div>
