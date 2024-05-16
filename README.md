@@ -49,6 +49,7 @@ You should now be ready to run Clawpack examples, e.g.
 
     cd $CLAW/geoclaw/examples/tsunami/chile2010
     make new  # should compile Fortran and create xgeoclaw
+    make topo # should fetch topo DEM
     make data  # should make *.data files
     make output # should run the code.
     
