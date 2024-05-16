@@ -1,4 +1,4 @@
-# csdms_clinic_2024
+# geoclaw_tutorial_csdms2024
 
 ### Materials for the GeoClaw Clinic, CSDMS 2024 Annual Meeting
 
@@ -60,8 +60,8 @@ directory and modify it to view specific plots).
 In a JupyterHub terminal (or on your laptop if you have Clawpack installed):
 
     cd $HOME
-    git clone https://github.com/rjleveque/csdms_clinic_2024.git
+    git clone https://github.com/clawpack/geoclaw_tutorial_csdms2024.git
     
 which will clone this repository.
 
-Then see the README.md file in the `csdms_clinic_2024/quillayute` directory.
+Then see the README.md file in the `geoclaw_tutorial_csdms2024/quillayute` directory.

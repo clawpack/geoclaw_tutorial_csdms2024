@@ -25,7 +25,7 @@ a GeoClaw archive).
 
 Execute these commands:
 
-    make new   # compile Geoclaw code starting from scratch
+    make # compile Geoclaw code
     make data  # converts information in setrun.py into various *.data files
     make output  # runs the Fortran code using data in *.data files
     make plots  # creates _plots with plots specified by setplot.py
@@ -83,8 +83,10 @@ setrun_flood.py specifies the running conditions.
 
 To run the modified code:
 
-    make data  -f Makefile_flood  # to update the *.data files
-    make .plots -f Makefile_flood
+    make -f Makefile_flood          # to compile xgeoclaw_flood
+    make data  -f Makefile_flood    # to update the *.data files
+    make output  -f Makefile_flood  # will output to _output_flood
+    make plots -f Makefile_flood    # make plots in _plots_flood
     
 The latter command should compile a new version of the code
 using src2_flood.f90 (producing a new executable xgeoclaw_flood),
